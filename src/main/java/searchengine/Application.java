@@ -1,5 +1,6 @@
 package searchengine;
 
+import ch.qos.logback.classic.Level;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +11,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SpringApplication.run(Application.class, args);
-            LoggingConfiguration.activateConsoleLogging();
+            LoggingConfiguration.activateConsoleLogging(Level.INFO);
             LoggerFactory.getLogger(Application.class)
                     .atInfo()
                     .addKeyValue("@args", args)

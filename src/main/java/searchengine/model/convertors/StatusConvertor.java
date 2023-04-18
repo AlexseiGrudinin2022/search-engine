@@ -1,9 +1,9 @@
 package searchengine.model.convertors;
 
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 import searchengine.model.statuses.IndexingStatus;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 @Converter(autoApply = true)
 public class StatusConvertor implements AttributeConverter<IndexingStatus, String> {

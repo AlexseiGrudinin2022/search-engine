@@ -1,5 +1,8 @@
 package searchengine.model.statuses;
 
+import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.util.EnumUtils;
+
 /**
  * Enum содержит перечисления возможных статусов индексации сайта
  *
@@ -23,9 +26,16 @@ public enum IndexingStatus {
     }
 
     public static IndexingStatus getEnum(String status) {
-        for (IndexingStatus e : IndexingStatus.values()) {
-            if (status.equalsIgnoreCase(e.status)) return e;
+        try {
+            return EnumUtils.findEnumInsensitiveCase(IndexingStatus.class, status);
+        } catch (Exception e) {
+            LoggerFactory.getLogger(IndexingStatus.class)
+                    .atError()
+                    .addKeyValue("status", status)
+                    .setCause(e)
+                    .log("Ошибка при получении статуса индексации");
+            return null;
         }
-        return null;
+
     }
 }
